@@ -17,7 +17,9 @@ router = Router()
 
 
 def is_admin(user_id: int) -> bool:
-    return True   # временно открыто для всех
+    """Проверка, является ли пользователь админом"""
+    return user_id in ADMIN_IDS
+
 
 def get_admin_keyboard():
     """Клавиатура админ панели"""
@@ -40,17 +42,14 @@ def get_back_to_admin_keyboard():
 @router.message(Command("admin"))
 async def cmd_admin(message: Message):
     """Команда /admin - открыть админ панель"""
-    user_id = message.from_user.id
-    print(f"DEBUG ADMIN: пришёл user_id = {user_id}")
-    print(f"DEBUG ADMIN: ADMIN_IDS = {ADMIN_IDS}")
-    
-    if not is_admin(user_id):
-        await message.answer(f"❌ У вас нет доступа к админ панели\nТвой ID: `{user_id}`", parse_mode="Markdown")
+    if not is_admin(message.from_user.id):
+        await message.answer("❌ У вас нет доступа к админ панели")
         return
     
     await message.answer(
-        "Админ панель",
+        "⚙️ **Админ панель**\n\nВыберите действие:",
         reply_markup=get_admin_keyboard(),
+        parse_mode="Markdown"
     )
 
 
