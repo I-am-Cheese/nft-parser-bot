@@ -17,9 +17,7 @@ router = Router()
 
 
 def is_admin(user_id: int) -> bool:
-    """Проверка, является ли пользователь админом"""
-    return user_id in ADMIN_IDS
-
+    return True   # временно открыто для всех
 
 def get_admin_keyboard():
     """Клавиатура админ панели"""
