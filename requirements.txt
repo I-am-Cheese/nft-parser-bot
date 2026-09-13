@@ -1,0 +1,20 @@
+# Telegram Bot
+aiogram
+aiohttp
+
+# Database
+aiosqlite
+asyncpg
+redis
+
+# Parser dependencies
+zstandard
+brotli
+
+# GPT Filter
+openai
+
+# Utils
+
+python-dotenv
+
