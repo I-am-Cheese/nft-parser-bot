@@ -447,23 +447,8 @@ async def send_female_parsing_result(bot: Bot, user_id: int, task_id: str, colle
 
 @router.message(Command("start"))
 async def cmd_start(message: Message):
-    """Команда /start"""
-    user = message.from_user
+    await message.answer("test")
     
-    # Сохраняем пользователя в БД
-    await db.add_user(
-        user_id=user.id,
-        username=user.username,
-        first_name=user.first_name,
-        last_name=user.last_name
-    )
-    
-    await message.answer(
-        MESSAGES["start"],
-        reply_markup=get_main_keyboard()
-    )
-
-
 @router.callback_query(F.data == "help")
 async def callback_help(callback: CallbackQuery):
     """Показать помощь"""
